@@ -1,5 +1,13 @@
 def xml_escape(s)
-  s.gsub('&', '&amp;').gsub('<','&lt;').gsub('>', '&gt;')
+  s.gsub(/[&<>'"]/) do |char|
+    case char
+    when '&' then '&amp;'
+    when '<' then '&lt;'
+    when '>' then '&gt;'
+    when "'" then '&apos;'
+    when '"' then '&quote;'
+    end
+  end
 end
 
 class Unfuddle
